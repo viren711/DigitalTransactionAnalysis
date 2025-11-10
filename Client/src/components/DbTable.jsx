@@ -8,7 +8,7 @@ export default function DbTable() {
     ]
 
     return (
-        <div className="text-center rounded-[10px] border border-[#273246]">
+        <div className="text-center rounded-[10px] overflow-hidden border border-[#273246] mx-2">
             <table className="w-full">
                 <thead className="bg-[#1e293b] hover:cursor-default transition-colors">
                     <tr>

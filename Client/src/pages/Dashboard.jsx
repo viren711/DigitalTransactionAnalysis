@@ -26,7 +26,7 @@ export default function Dashboard() {
                     <StatCard title="Growth Rate" value="23.4%" change="+2.1%" positive={true} />
                     <StatCard title="Active Users" value="428M" change="-0.3%" positive={false} />
                 </div>
-                <div className="border border-[#273246] mx-4">
+                <div className="border-[#273246] mx-4">
                     <DbInsight />
                 </div>
                 <div className="mx-4 my-10">
