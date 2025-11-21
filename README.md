@@ -6,6 +6,19 @@ The data is cleaned and analyzed to find patterns, trends, and meaningful insigh
 Visualizations are created to make the results simple to understand. 
 This helps in tracking the growth and changes in digital transactions over time effectively.
 
-Backend ---> Flask App
-Frontend ---> React App
-Database ---> MongoDB
+
+
+Backend
+
+cd Backend
+
+python app.py
+
+
+
+
+Frontend
+
+npm i
+
+nup run dev
