@@ -1,0 +1,42 @@
+Digital Payments
+
+https://bi.etaal.nic.in/Reports/powerbi/ModeWiseAnalysis(WL)?rs:Embed=true
+
+A brief explanation of each digital transaction mode from your table, highlighting how transactions in India are processed across banking, payment, and fintech platforms:
+
+### Brief Explanation of All Modes
+
+- BHIM UPI: Unified Payments Interface, a mobile-based real-time payments system supporting peer-to-peer and peer-to-merchant payments using bank accounts linked through mobile apps.[1]
+- PPI: Prepaid Payment Instruments, such as mobile wallets, prepaid cards, and vouchers, used for purchases and transfers without a direct bank account.[1]
+- NEFT: National Electronic Funds Transfer, an RBI-operated service for batch-based, one-to-one interbank transfers, typically settled in half-hourly cycles.[1]
+- NACH: National Automated Clearing House, used for bulk and recurring credit/debit transactions like dividends, salaries, bills, and subsidies.[1]
+- IMPS: Immediate Payment Service, provides 24/7 instant bank-to-bank transfers via mobile, internet, or ATMs, with higher speed than NEFT.[1]
+- NETC: National Electronic Toll Collection, enables electronic toll payments, typically through FASTag for vehicles on highways.[1]
+- Credit Card: Transactions initiated using bank-issued credit cards over PoS, e-commerce, or payment gateways; allows deferred payment and credit.[1]
+- Debit Card: Bank-linked debit card purchases and withdrawals, including PoS and online transactions; debits funds instantly from user's account.[1]
+- Others: Covers all remaining digital transaction instruments, potentially including new fintech products or niche payment solutions.
+- RTGS: Real Time Gross Settlement, used for high-value, instant, individual interbank transfers (above ₹2 lakh), primarily for businesses and large transactions.[1]
+- Mobile Banking: Transactions initiated through mobile banking apps, encompassing transfers, bill payments, and account management.[1]
+- Internet Banking: Online banking portal transactions, including funds transfers, bill pay, and online purchases, using bank websites.[1]
+- AEPS: Aadhaar Enabled Payment System, allows basic banking transactions (withdrawal, deposit, and fund transfer) using Aadhaar authentication at micro-ATMs.[1]
+- BHIM Aadhaar: Biometrics-based payment mode, where merchants accept payments directly from customers’ Aadhaar-linked bank accounts.[1]
+- USSD: Unstructured Supplementary Service Data, a GSM protocol allowing mobile payments and banking transactions without smartphone or internet; used via dialing codes on any mobile device.[1]
+
+These modes represent India’s diverse digital transaction ecosystem—each has its own technology, user base, and service integration. The volume numbers reflect their adoption and operational scale in the country.[1]
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://www.npci.org.in/product/ecosystem-statistics/upi
+
+
+
