@@ -10,7 +10,7 @@ export default function Sidebar({
   const [loading, setLoading] = useState(false);
 
   // Use env var if available, fallback to 127.0.0.1:5000
-  const API_BASE ="http://127.0.0.1:5000";
+  const API_BASE = "http://127.0.0.1:5000";
 
   async function handleComparisonClick() {
     setLoading(true);
@@ -41,7 +41,7 @@ export default function Sidebar({
   }
 
   return (
-    <div className="bg-[#0d1320] text-[#9db6cb] h-screen w-[20vw] px-5 py-5">
+    <div className="fixed top-0 left-0 h-full bg-[#0d1320] text-[#9db6cb] w-[20vw] px-5 py-5">
       <div className="font-poppins text-center text-[35px] px-3 py-1 font-bold border-[#242f43] rounded-[5px]">
         VishnuDTA
       </div>
@@ -53,6 +53,16 @@ export default function Sidebar({
           Dashboard
         </div>
 
+        <div
+          className={`${insActive ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`}
+        >
+          Insights
+        </div>
+        <div
+          className={`${insActive ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`}
+        >
+          Insights
+        </div>
         <div
           className={`${insActive ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`}
         >

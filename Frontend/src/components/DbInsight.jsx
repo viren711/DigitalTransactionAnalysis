@@ -1,15 +1,8 @@
 import { useState } from "react";
 import Dropdown from "./Dropdown";
 
-export default function DbInsight() {
-    const options = [
-        "Last Month",
-        "Last 3 Months",
-        "Last 6 Months",
-        "Last 12 Months",
-        "All Time"
-    ]
-    const [selected, setSelected] = useState(options[0])
+export default function DbInsight({ options = [], selected, setSelected }) {
+
 
     return (
         <div className="border-[#273246] mx-2">
@@ -19,8 +12,8 @@ export default function DbInsight() {
                         selected={selected}
                         setSelected={setSelected}
                     />
-                    <button className="mx-2 bg-[#1e293b] text-[#c8d7e5]">Reset</button>
-                    <button className="mx-2 rounded-[5px] bg-[#3fa2ff] text-[#032034]">Apply</button>
+                    {/* <button className="mx-2 bg-[#1e293b] text-[#c8d7e5]">Reset</button>
+                    <button className="mx-2 rounded-[5px] bg-[#3fa2ff] text-[#032034]">Apply</button> */}
                 </div>
                 <div className="">
                     <button className="rounded-[5px] bg-[#3fa2ff] text-[#032034]">View Insights</button>
