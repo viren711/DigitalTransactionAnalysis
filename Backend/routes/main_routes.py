@@ -91,7 +91,7 @@ def api_digital_payments():
 
     return jsonify({"status": "ok", "table": table, "count": len(rows), "rows": rows})
 
-# --- Route 3: Sample11 (your earlier table) ---
+# --- Route 3: Sample11 ---
 @main_bp.route('/api/sample11', methods=['GET'])
 def api_sample11():
     """
@@ -111,6 +111,30 @@ def api_sample11():
         return jsonify({"status": "error", "message": str(e)}), 404
     except Exception as e:
         current_app.logger.exception("Failed to query sample11 table")
+        return jsonify({"status": "error", "message": "server error"}), 500
+
+    return jsonify({"status": "ok", "table": table, "count": len(rows), "rows": rows})
+
+# --- Route 4: Bankwise Top 10 ---
+@main_bp.route('/api/bankwise_top10_upi', methods=['GET'])
+def api_bankwise_top10_upi():
+    """
+    GET /api/bankwise_top10_upi?limit=100&offset=0
+    Returns rows from table: bankwise_top10_upi
+    """
+    table = "bankwise_top10_upi"
+    try:
+        limit = int(request.args.get("limit", 100))
+        offset = int(request.args.get("offset", 0))
+    except ValueError:
+        return jsonify({"status": "error", "message": "limit and offset must be integers"}), 400
+
+    try:
+        rows = fetch_rows_from_table(table, limit=limit, offset=offset)
+    except LookupError as e:
+        return jsonify({"status": "error", "message": str(e)}), 404
+    except Exception as e:
+        current_app.logger.exception("Failed to query bankwise_top10_upi table")
         return jsonify({"status": "error", "message": "server error"}), 500
 
     return jsonify({"status": "ok", "table": table, "count": len(rows), "rows": rows})
