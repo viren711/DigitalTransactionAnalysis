@@ -40,3 +40,5 @@ https://www.npci.org.in/product/ecosystem-statistics/upi
 
 
 
+https://www.npci.org.in/api/ecosystem-statistics/get-statistics?product_name=UPI&tab_name=chargeback&year=2025&month=Jan&page_no=6&sort_by=asc&size=100&locale=en
+
