@@ -7,11 +7,15 @@ import DbTable from "../components/DbTable";
 import { transformDigitalPayments } from "../utils/transformDigitalPayments";
 import DigitalPaymentsBarChart from "../components/DigitalPaymentsBarChart";
 import DigitalPaymentsPieChart from "../components/DigitalPaymentsPieChart";
+import EcosystemPieChart from "../components/EcosystemPieChart";
+import EcosystemBarChart from "../components/EcosystemBarChart";
 import { isMobile } from "react-device-detect"
+import { transformEcosystem } from "../utils/transformEcosystem";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Dashboard() {
-
+    const navigate = useNavigate()
     const [rawData, setRawData] = useState([]);
     const [chartData, setChartData] = useState([]);
     const [pieData, setPieData] = useState([]);
@@ -19,7 +23,8 @@ export default function Dashboard() {
     const [topN, setTopN] = useState(7);
 
     const [selectedRange, setSelectedRange] = useState("All");
-    const filterOptions = ["1 Year", "3 Years", "5 Years", "All"];
+    const filterOptions = ["Last Year", "Last 3 Years", "Last 5 Years", "All"];
+    const [rows, setRows] = useState([]);
 
     useEffect(() => {
         fetch("http://127.0.0.1:5000/api/digital_payments")
@@ -32,13 +37,23 @@ export default function Dashboard() {
             });
     }, []);
 
+    useEffect(() => {
+        fetch("http://127.0.0.1:5000/api/ecosystem")
+            .then(res => res.json())
+            .then(json => {
+                const transformed = transformEcosystem(json.rows);
+                setRows(transformed);
+            });
+    }, []);
+
+
     const filterData = (range) => {
         switch (range) {
-            case "1 Year":
+            case "Last Year":
                 return rawData.slice(-1);
-            case "3 Years":
+            case "Last 3 Years":
                 return rawData.slice(-3);
-            case "5 Years":
+            case "Last 5 Years":
                 return rawData.slice(-5);
             case "All":
             default:
@@ -148,16 +163,26 @@ export default function Dashboard() {
                             <StatCard title="Active Users" value="428M" change="-0.3%" positive={false} />
                         </div> */}
                         <div className="border-[#273246] mx-4 mt-5">
-                            <DbInsight options={filterOptions} selected={selectedRange} setSelected={setSelectedRange} />
+                            <DbInsight filter={true} options={filterOptions} selected={selectedRange} setSelected={setSelectedRange} />
                         </div>
                         <div className="grid grid-cols-2 gap-6 mx-4">
                             <DigitalPaymentsBarChart data={chartData} />
                             <DigitalPaymentsPieChart data={pieData} />
                         </div>
-
-                        <div className="mx-4 my-10">
-                            <DbTable />
+                        {/* <div className="border-[#273246] mx-4 mt-5">
+                            <DbInsight options={filterOptions} selected={selectedRange} setSelected={setSelectedRange} />
+                        </div> */}
+                        <div className="flex justify-end mx-6 mt-5">
+                            <button className="rounded-[5px] bg-[#3fa2ff] text-[#032034]" onClick={() => { navigate('/dataset2') }}>View Dataset 2</button>
                         </div>
+                        <div className="grid grid-cols-2 gap-6 mx-4">
+                            <EcosystemBarChart data={rows} top={7} />
+                            <EcosystemPieChart data={rows} />
+                        </div>
+
+                        {/* <div className="mx-4 my-10">
+                            <DbTable />
+                        </div> */}
                     </div>
                 </div>
             )

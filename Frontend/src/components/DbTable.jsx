@@ -31,7 +31,7 @@ export default function DbTable() {
                             {/* <th className="py-3 px-1 ">Date</th> */}
                             {/* <th className="py-3 px-1">Source</th> */}
                             <th className="py-3">Transaction Type</th>
-                            <th className="py-3 px-3">Value</th>
+                            <th className="py-3 px-3">Value (In Cr.)</th>
                             <th className="py-3 px-3">Change</th>
                         </tr>
                     </thead>
@@ -52,21 +52,21 @@ export default function DbTable() {
             <table className="w-full">
                 <thead className="bg-[#1e293b] hover:cursor-default transition-colors">
                     <tr>
-                        <th className="py-3 ">Date</th>
-                        <th className="py-3">Source</th>
-                        <th className="py-3">Metric</th>
-                        <th className="py-3">Value</th>
-                        <th className="py-3">Change</th>
+                        {/* <th className="py-3 px-1 ">Date</th> */}
+                        {/* <th className="py-3 px-1">Source</th> */}
+                        <th className="py-3">Transaction Type</th>
+                        <th className="py-3 px-3">Value (In Cr.)</th>
+                        <th className="py-3 px-3">Change</th>
                     </tr>
                 </thead>
                 <tbody>
                     {insights.map((row, index) => (
                         <tr key={index} className="border-t border-[#273246] hover:bg-[#1b2535] hover:cursor-default transition-colors">
-                            <td className="py-3 border-b border-[#273246]">{row.date}</td>
-                            <td className="py-3 border-b border-[#273246]">{row.source}</td>
+                            {/* <td className="py-3 px-1 border-b border-[#273246]">{row.date}</td> */}
+                            {/* <td className="py-3 px-1 border-b border-[#273246]">{row.source}</td> */}
                             <td className="py-3 border-b border-[#273246]">{row.metric}</td>
-                            <td className="py-3 border-b border-[#273246]">{row.value}</td>
-                            <td className="py-3 border-b border-[#273246]">{row.change}</td>
+                            <td className="py-3 px-3 border-b border-[#273246]">{row.value}</td>
+                            <td className="py-3 px-3 border-b border-[#273246]">{row.change}</td>
                         </tr>
                     ))}
                 </tbody>
