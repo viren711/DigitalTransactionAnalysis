@@ -138,3 +138,54 @@ def api_bankwise_top10_upi():
         return jsonify({"status": "error", "message": "server error"}), 500
 
     return jsonify({"status": "ok", "table": table, "count": len(rows), "rows": rows})
+
+# --- Route 5: Digital_Payments_Predictions_25
+@main_bp.route('/api/digital_payments_with_25_preds', methods=['GET'])
+def api_digital_payments_with_25_preds():
+    """
+    GET /api/digital_payments_with_25_preds?limit=100&offset=0
+    Returns rows from table: digital_payments_with_25_preds
+    """
+    table = "digital_payments_with_25_preds"
+    try:
+        limit = int(request.args.get("limit", 100))
+        offset = int(request.args.get("offset", 0))
+    except ValueError:
+        return jsonify({"status": "error", "message": "limit and offset must be integers"}), 400
+
+    try:
+        rows = fetch_rows_from_table(table, limit=limit, offset=offset)
+    except LookupError as e:
+        return jsonify({"status": "error", "message": str(e)}), 404
+    except Exception as e:
+        current_app.logger.exception("Failed to query digital_payments_with_25_preds table")
+        return jsonify({"status": "error", "message": "server error"}), 500
+
+    return jsonify({"status": "ok", "table": table, "count": len(rows), "rows": rows})
+
+# --- Route 6: Digital_Payments_Predictions_26/27
+@main_bp.route('/api/digital_payments_predictions_26_27', methods=['GET'])
+def api_digital_payments_predictions_26_27():
+    """
+    GET /api/digital_payments_predictions_26_27?limit=100&offset=0
+    Returns rows from table: digital_payments_predictions_26_27
+    """
+    table = "digital_payments_predictions_26_27"
+    try:
+        limit = int(request.args.get("limit", 100))
+        offset = int(request.args.get("offset", 0))
+    except ValueError:
+        return jsonify({"status": "error", "message": "limit and offset must be integers"}), 400
+
+    try:
+        rows = fetch_rows_from_table(table, limit=limit, offset=offset)
+    except LookupError as e:
+        return jsonify({"status": "error", "message": str(e)}), 404
+    except Exception as e:
+        current_app.logger.exception("Failed to query digital_payments_predictions_26_27 table")
+        return jsonify({"status": "error", "message": "server error"}), 500
+
+    return jsonify({"status": "ok", "table": table, "count": len(rows), "rows": rows})
+
+
+
