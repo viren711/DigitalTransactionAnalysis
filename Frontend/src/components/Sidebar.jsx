@@ -1,13 +1,17 @@
 // Sidebar.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Sidebar({
   dbActive = false,
-  insActive = false,
+  d1Active = false,
+  d2Active = false,
+  d3Active = false,
   compActive = false,
   onComparisonResult, // optional callback: (data) => void
 }) {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
 
   // Use env var if available, fallback to 127.0.0.1:5000
   const API_BASE = "http://127.0.0.1:5000";
@@ -48,25 +52,26 @@ export default function Sidebar({
 
       <div className="my-8 p-0">
         <div
-          className={`${dbActive ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`}
+          className={`${dbActive ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`} onClick={() => navigate("/")}
         >
           Dashboard
         </div>
 
         <div
-          className={`${insActive ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`}
+          className={`${d1Active ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`} onClick={() => navigate("/dataset1")}
         >
-          Insights
+          {/* Dataset1 */}
+          Dataset 1
         </div>
         <div
-          className={`${insActive ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`}
+          className={`${d2Active ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`} onClick={() => navigate("/dataset2")}
         >
-          Insights
+          Dataset2
         </div>
         <div
-          className={`${insActive ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`}
+          className={`${d3Active ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`} onClick={() => navigate("/dataset3")}
         >
-          Insights
+          Dataset3
         </div>
 
         <div
@@ -84,6 +89,6 @@ export default function Sidebar({
           </button>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
