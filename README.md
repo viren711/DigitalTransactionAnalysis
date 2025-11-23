@@ -45,6 +45,47 @@ Additionally, a robust backend and an interactive frontend have been developed t
 ```
 
 - The backend runs on PORT 5173
+
+
+## Project Structure
+
+└── DigitalTransactionAnalysis/
+    ├── Backend
+    │   ├── app.py
+    │   ├── check_db.py
+    │   ├── data
+    │   ├── db.py
+    │   ├── drop_table.py
+    │   ├── import_csv.py
+    │   ├── instance
+    │   ├── myenv
+    │   └── routes
+    ├── DataScraper
+    │   ├── Bankwise Data
+    │   ├── DataCleaning
+    │   ├── Digital Payments
+    │   ├── Finance
+    │   ├── Merchant Category Classification
+    │   ├── Resources
+    │   ├── UPI_apps_analysis.ipynb
+    │   ├── UPI_data
+    │   ├── url.txt
+    │   └── xl2csv.ipynb
+    ├── Frontend
+    │   ├── .gitignore
+    │   ├── README.md
+    │   ├── eslint.config.js
+    │   ├── index.html
+    │   ├── package-lock.json
+    │   ├── package.json
+    │   ├── public
+    │   ├── src
+    │   └── vite.config.js
+    ├── LICENSE
+    ├── README.md
+    ├── requirements.txt
+    └── tasks.txt
+
 ## API Reference
 
 The listed APIs serve as endpoints for fetching various tables related to digital transactions and predictive analytics.
@@ -57,6 +98,19 @@ The listed APIs serve as endpoints for fetching various tables related to digita
   GET /api/digital_payments_predictions_26_27
 ```
 
+
+
+## Tech Stack
+
+**Client:** React, Vite, TailwindCSS
+
+**Server:** Flask, SqlAlchemy
+
+**Web Scrapping:** Requests, BeautifulSoup
+
+**Model Training:** sklearn
+
+**Visualization:** matplotlib
 
 
 ## Authors
