@@ -25,14 +25,47 @@ export default function DigitalPaymentsBarChart({ data }) {
                 Digital Payments (Bar Chart)
             </h2>
 
-            <div className="h-96">
+            <div className="h-[450px]">
                 <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={data}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="year" stroke="#94a3b8" />
-                        <YAxis stroke="#94a3b8" />
-                        <Tooltip />
-                        <Legend />
+                    <BarChart data={data} margin={{ top: 20, right: 30, left: 60, bottom: 10 }}>
+                        {/* <CartesianGrid strokeDasharray="3 3" stroke="#334155" /> */}
+                        <XAxis
+                            dataKey="year"
+                            stroke="#94a3b8"
+                            tick={{ fontSize: 12 }}
+                            label={{
+                                value: "Year",
+                                dy: 20,
+                                position: "insideCenter",
+                                fill: "#94a3b8"
+                            }}
+                        />
+                        <YAxis stroke="#94a3b8" tickFormatter={(v) => `${v} Cr`}
+                            label={{
+                                value: "Transactions Volume (Cr)",
+                                dx: -60,
+                                position: "insideCenter",
+                                angle: -90,
+                                fill: "#94a3b8"
+                            }} />
+                        <Tooltip
+                            formatter={(v) =>
+                                typeof v === "number" ? `${v.toFixed(2)} Cr` : v
+                            }
+                            contentStyle={{
+                                background: "#1e293b",
+                                borderRadius: "8px"
+                            }}
+                            labelStyle={{ color: "#fff" }} />
+                        <Legend
+                            verticalAlign="top"
+                            align="center"
+                            wrapperStyle={{ paddingBottom: 16 }}
+                            iconType="circle"
+                            formatter={(value) => (
+                                <span style={{ fontSize: 11 }}>{value}</span>
+                            )}
+                        />
 
                         {modes.map((mode, idx) => (
                             <Bar

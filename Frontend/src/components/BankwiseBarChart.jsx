@@ -72,11 +72,24 @@ export default function BankWiseBarChart({ rows }) {
                             textAnchor="end"
                             interval={0}
                             tick={{ fill: "#cbd5e1", fontSize: 12 }}
+                            label={{
+                                value: "Banks",
+                                dy: 50,
+                                position: "bottom",
+                                fill: "#94a3b8"
+                            }}
                         />
 
                         <YAxis
                             tick={{ fill: "#cbd5e1", fontSize: 12 }}
-                            tickFormatter={(v) => (v / 10000000).toFixed(2) + " Cr"}
+                            tickFormatter={(v) => (v / 10000000) + " Cr"}
+                            label={{
+                                value: "Transactions (Cr)",
+                                angle: -90,
+                                dx: -40,
+                                position: "insideCenter",
+                                fill: "#94a3b8"
+                            }}
                         />
 
                         <Tooltip

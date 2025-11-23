@@ -7,6 +7,7 @@ export default function Sidebar({
   d1Active = false,
   d2Active = false,
   d3Active = false,
+  predActive = false,
   compActive = false,
   onComparisonResult, 
 }) {
@@ -71,8 +72,14 @@ export default function Sidebar({
         >
           Dataset3
         </div>
-
         <div
+          className={`${predActive ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`} onClick={() => navigate("/predictions")}
+        >
+          Predictions
+        </div>
+
+
+        {/* <div
           className={`${compActive ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4 flex justify-between items-center`}
         >
           <span>Comparison Charts</span>
@@ -85,7 +92,7 @@ export default function Sidebar({
           >
             {loading ? "Running..." : "Run"}
           </button>
-        </div>
+      </div> */}
       </div>
     </div >
   );

@@ -36,7 +36,7 @@ export default function EcosystemBarChart({ data, top }) {
                     <BarChart
                         data={barData}
                         layout="vertical"
-                        margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
+                        margin={{ top: 10, right: 30, left: 30, bottom: 10 }}
                     >
                         {/* <CartesianGrid strokeDasharray="3 3" stroke="#334155" /> */}
 
@@ -44,8 +44,15 @@ export default function EcosystemBarChart({ data, top }) {
                         <YAxis
                             type="category"
                             dataKey="name"
-                            width={150}
+                            width={200}
                             tick={{ fill: "#cbd5e1", fontSize: 12 }}
+                            label={{
+                                value: "Categories",
+                                angle: -90,
+                                dx: -70,
+                                position: "insideCenter",
+                                fill: "#94a3b8"
+                            }}
                         />
 
                         {/* Numeric Axis */}
@@ -53,6 +60,12 @@ export default function EcosystemBarChart({ data, top }) {
                             type="number"
                             stroke="#94a3b8"
                             tick={{ fontSize: 12 }}
+                            label={{
+                                value: "Transactions Volume (Cr)",
+                                dy: 15,
+                                position: "insideCenter",
+                                fill: "#94a3b8"
+                            }}
                         />
 
                         <Tooltip
