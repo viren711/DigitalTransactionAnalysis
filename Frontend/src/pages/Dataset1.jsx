@@ -36,7 +36,7 @@ export default function Dataset1() {
             <div className="flex-1">
                 <div className="px-5 py-4">
                     <div className="text-[35px] font-bold">
-                        Digital Transaction Analysis
+                        Digital Payment Analysis
                     </div>
                     <div className="text-[18px] text-[#9db6cb]">
                         Tracking RBI, NPCI, and market trends

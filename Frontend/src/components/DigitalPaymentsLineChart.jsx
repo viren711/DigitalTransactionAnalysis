@@ -53,7 +53,15 @@ export default function DigitalPaymentsLineChart({ rows }) {
                             tick={{ fontSize: 12 }}
                         />
                         <YAxis stroke="#94a3b8" />
-                        <Tooltip />
+                        <Tooltip
+                            formatter={(v) =>
+                                typeof v === "number" ? `${v.toFixed(2)} Cr` : v
+                            }
+                            contentStyle={{
+                                background: "#1e293b",
+                                borderRadius: "8px"
+                            }}
+                            labelStyle={{ color: "#fff" }} />
                         <Legend />
 
                         {rows.map((row, idx) => (

@@ -73,7 +73,7 @@ export default function BankwiseLineChart({ rows }) {
                 </select>
             </div>
 
-            <div className="h-[450px]">
+            <div className="h-[550px]">
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={chartData}>
                         <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
@@ -81,6 +81,12 @@ export default function BankwiseLineChart({ rows }) {
                         <XAxis
                             dataKey="month"
                             tick={{ fill: "#cbd5e1", fontSize: 12 }}
+                            label={{
+                                value: "Months",
+                                position: "insideBottom",
+                                offset: -5,
+                                fill: "#94a3b8"
+                            }}
                         />
 
                         <YAxis
@@ -88,7 +94,7 @@ export default function BankwiseLineChart({ rows }) {
                             label={{
                                 value: "Transactions (Cr)",
                                 angle: -90,
-                                position: "insideLeft",
+                                position: "insideCenter",
                                 fill: "#94a3b8"
                             }}
                         />
@@ -99,9 +105,16 @@ export default function BankwiseLineChart({ rows }) {
                             formatter={(val) => `${val} Cr`}
                         />
 
-                        <Legend />
+                        <Legend
+                            verticalAlign="top"
+                            align="center"
+                            wrapperStyle={{ paddingBottom: 16 }}
+                            iconType="circle"
+                            formatter={(value) => (
+                                <span style={{ fontSize: 11 }}>{value}</span>
+                            )}
+                        />
 
-                        {/* Generate lines dynamically */}
                         {rows
                             .filter((r) => r.Year === selectedYear)
                             .map((r, i) => (
@@ -117,6 +130,7 @@ export default function BankwiseLineChart({ rows }) {
                     </LineChart>
                 </ResponsiveContainer>
             </div>
+
         </div>
     );
 }
