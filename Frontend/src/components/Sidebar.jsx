@@ -9,12 +9,11 @@ export default function Sidebar({
   d3Active = false,
   predActive = false,
   compActive = false,
-  onComparisonResult, // optional callback: (data) => void
+  onComparisonResult, 
 }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate()
 
-  // Use env var if available, fallback to 127.0.0.1:5000
   const API_BASE = "http://127.0.0.1:5000";
 
   async function handleComparisonClick() {
@@ -35,7 +34,6 @@ export default function Sidebar({
       const data = await res.json();
       console.log("Comparison result:", data);
       if (typeof onComparisonResult === "function") onComparisonResult(data);
-      // lightweight user feedback:
       alert("Comparison finished — check console for details.");
     } catch (err) {
       console.error("Comparison error:", err);
@@ -61,7 +59,7 @@ export default function Sidebar({
         <div
           className={`${d1Active ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`} onClick={() => navigate("/dataset1")}
         >
-          {/* Dataset1 */}
+          {}
           Dataset 1
         </div>
         <div

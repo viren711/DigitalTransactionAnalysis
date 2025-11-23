@@ -1,4 +1,3 @@
-# import_csv.py  -- patched and SQLAlchemy 2.x compatible
 import os
 import re
 import sys
@@ -9,18 +8,13 @@ from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy import inspect
 
-# Import your Flask app factory and db object
 from app import create_app
 from db import db
 
-# ----------------- Config -----------------
-# On Linux/Cloud you might use "/mnt/data"
-# On Windows set to your local data folder, for example:
-# CSV_DIR = r"C:\Users\Acer\Dropbox\My PC (LAPTOP-5VJGRGO2)\Desktop\Assignment8\DigitalTransactionAnalysis\Backend\data"
+
 CSV_DIR = "data"
 DB_TABLE_NAME_PREFIX = ""
 VALID_TABLE_NAME_RE = re.compile(r'[^a-z0-9_]')
-# ------------------------------------------
 
 def map_dtype_to_sqla(dtype, sample_series=None):
     """Return a SQLAlchemy Column type for a pandas dtype (heuristic)."""
@@ -72,15 +66,12 @@ def create_table_from_df(metadata: SA_MetaData, table_name: str, df: pd.DataFram
     return table
 
 def import_all_csvs_once(csv_dir: str = CSV_DIR):
-    # create app & app context to reuse your Flask config
     app = create_app()
     with app.app_context():
-        # use the engine bound to the SQLAlchemy instance
         engine = db.engine
-        metadata = db.metadata  # shared metadata from flask_sqlalchemy
+        metadata = db.metadata  
         inspector = inspect(engine)
 
-        # find csv files
         try:
             files = [f for f in os.listdir(csv_dir) if f.lower().endswith('.csv')]
         except Exception as e:
@@ -96,7 +87,7 @@ def import_all_csvs_once(csv_dir: str = CSV_DIR):
             table_name = sanitize_table_name(fname)
             print(f"[DEBUG] Will attempt import: file='{fullpath}' -> table='{table_name}'")
 
-            # refresh inspector to pick up newest tables
+            
             inspector = inspect(engine)
             if inspector.has_table(table_name):
                 print(f"[SKIP] Table '{table_name}' already exists — skipping file {fname}")
@@ -104,7 +95,7 @@ def import_all_csvs_once(csv_dir: str = CSV_DIR):
 
             print(f"[IMPORT] Processing {fname} -> table '{table_name}'")
 
-            # read csv
+            
             try:
                 df = pd.read_csv(fullpath)
             except Exception as e:
@@ -113,8 +104,7 @@ def import_all_csvs_once(csv_dir: str = CSV_DIR):
 
             if df.shape[0] == 0:
                 print(f"  [WARN] CSV '{fname}' has 0 data rows; skipping insert.")
-                # still create table structure if desired; currently we'll create empty table
-            # sanitize column names in dataframe to match created columns
+            
             orig_cols = list(df.columns)
             colname_map = {}
             for c in orig_cols:
@@ -123,7 +113,7 @@ def import_all_csvs_once(csv_dir: str = CSV_DIR):
                 colname_map[c] = sc
             df.rename(columns=colname_map, inplace=True)
 
-            # create table object in metadata
+            
             table = create_table_from_df(metadata, table_name, df)
 
             try:
@@ -133,7 +123,7 @@ def import_all_csvs_once(csv_dir: str = CSV_DIR):
                 print(f"  [ERROR] Failed to create table '{table_name}': {e}", file=sys.stderr)
                 continue
 
-            # Reflect only this table into a fresh MetaData, then automap
+            
             try:
                 reflect_meta = SA_MetaData()
                 reflect_meta.reflect(bind=engine, only=[table_name])
@@ -147,18 +137,16 @@ def import_all_csvs_once(csv_dir: str = CSV_DIR):
 
             Base = automap_base(metadata=reflect_meta)
             try:
-                Base.prepare()  # uses the provided metadata
+                Base.prepare() 
             except Exception as e:
                 print(f"  [ERROR] Automap.prepare() failed for '{table_name}': {e}", file=sys.stderr)
                 continue
 
-            # locate mapped class for this table
+            
             MappedClass = None
-            # direct attribute access may work if names match
             if hasattr(Base.classes, table_name):
                 MappedClass = getattr(Base.classes, table_name)
             else:
-                # fallback: search for class with matching __table__.name
                 for clsname in dir(Base.classes):
                     if clsname.startswith('_'):
                         continue
@@ -174,10 +162,10 @@ def import_all_csvs_once(csv_dir: str = CSV_DIR):
                 print(f"  [ERROR] Could not automap a class for table '{table_name}'. Available automapped classes: {list(dir(Base.classes))}", file=sys.stderr)
                 continue
 
-            # prepare records: convert NaN -> None for DB
+            
             records = df.replace({pd.NA: None}).where(pd.notnull(df), None).to_dict(orient='records')
 
-            # Bulk insert via ORM mapping
+
             if len(records) == 0:
                 print(f"  [INFO] No records to insert for '{table_name}' (CSV had 0 data rows).")
                 continue
@@ -189,7 +177,6 @@ def import_all_csvs_once(csv_dir: str = CSV_DIR):
                 print(f"  [OK] Inserted {len(records)} rows into '{table_name}'")
             except Exception as e:
                 print(f"  [ERROR] Failed to insert rows into '{table_name}': {e}", file=sys.stderr)
-                # helpful debug: show a sample record and column mismatch info
                 try:
                     print("  [DEBUG] sample record keys:", list(records[0].keys()))
                     print("  [DEBUG] table columns:", [c.name for c in reflect_meta.tables[table_name].columns])
