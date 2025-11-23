@@ -2,7 +2,7 @@ from app import create_app
 from db import db
 from sqlalchemy import text
 
-TABLE_NAME = "ecosystem_statistics_upi_merchant_category_classification_2025_oct"   # change if needed
+TABLE_NAME = "ecosystem_statistics_upi_merchant_category_classification_2025_oct"
 
 app = create_app()
 with app.app_context():

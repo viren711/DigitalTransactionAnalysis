@@ -6,30 +6,13 @@ from flask_cors import CORS
 main_bp = Blueprint('main', __name__)
 CORS(main_bp,supports_credentials=True)
 
+
 @main_bp.route('/')
 def home():
-    
-    return render_template('home.html', title="Home", message="Welcome To Our Digital Transaction Analysis Application")
-
-@main_bp.route('/get_trends')
-def get_trends():
-    return render_template('trends.html', title="Trends", message="Welcome to Trends Page")
-
-@main_bp.route('/get_summary')
-def get_summary():
-    return render_template('summary.html', title="Summary", message="Welcome to Summary Page")
-
-@main_bp.route("/api/compare")
-def compare():
-    return {"status": "ok", "result": "Comparison executed!"}
+    return "Backend server has started", 200
 
 
 def fetch_rows_from_table(table_name: str, limit: int = 100, offset: int = 0):
-    """
-    Return list[dict] rows from given table (limit/offset). Uses db.engine.
-    Assumes table_name has been sanitized/validated by caller.
-    """
-    # small whitelist check: ensure table exists in DB
     engine = db.engine
     inspector = inspect(engine)
     if table_name not in inspector.get_table_names():
@@ -39,7 +22,6 @@ def fetch_rows_from_table(table_name: str, limit: int = 100, offset: int = 0):
     with engine.connect() as conn:
         result = conn.execute(sql, {"limit": limit, "offset": offset})
         rows = result.fetchall()
-        # convert SQLAlchemy Row to normal dict using _mapping
         return [dict(r._mapping) for r in rows]
 
 # --- Route 1: Ecosystem statistics ---
