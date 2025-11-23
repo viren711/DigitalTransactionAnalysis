@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
-import BankWiseBarChart from "../components/BankwiseBarChart";
+import BankwiseBarChart from "../components/BankwiseBarChart";
+import BankwiseLineChart from "../components/BankwiseLineChart";
 
 export default function Dataset3() {
     const [rows, setRows] = useState([]);
@@ -109,7 +110,8 @@ export default function Dataset3() {
 
                     </div>
                 </div>
-                <BankWiseBarChart rows={rows} />
+                <BankwiseBarChart rows={rows} />
+                <BankwiseLineChart rows={rows} />
             </div>
         </div>
     );
