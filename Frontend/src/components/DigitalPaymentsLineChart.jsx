@@ -44,15 +44,28 @@ export default function DigitalPaymentsLineChart({ rows }) {
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                         data={chartData}
-                        margin={{ top: 20, right: 30, left: 10, bottom: 10 }}
+                        margin={{ top: 20, right: 30, left: 60, bottom: 10 }}
                     >
                         <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                         <XAxis
                             dataKey="year"
                             stroke="#94a3b8"
                             tick={{ fontSize: 12 }}
+                            label={{
+                                value: "Year",
+                                dy: 20,
+                                position: "insideCenter",
+                                fill: "#94a3b8"
+                            }}
                         />
-                        <YAxis stroke="#94a3b8" />
+                        <YAxis stroke="#94a3b8" tickFormatter={(v) => `${v} Cr`}
+                            label={{
+                                value: "Transactions Volume (Cr)",
+                                dx: -60,
+                                position: "insideCenter",
+                                angle: -90,
+                                fill: "#94a3b8"
+                            }} />
                         <Tooltip
                             formatter={(v) =>
                                 typeof v === "number" ? `${v.toFixed(2)} Cr` : v
@@ -62,7 +75,15 @@ export default function DigitalPaymentsLineChart({ rows }) {
                                 borderRadius: "8px"
                             }}
                             labelStyle={{ color: "#fff" }} />
-                        <Legend />
+                        <Legend
+                            verticalAlign="top"
+                            align="center"
+                            wrapperStyle={{ paddingBottom: 16 }}
+                            iconType="circle"
+                            formatter={(value) => (
+                                <span style={{ fontSize: 11 }}>{value}</span>
+                            )}
+                        />
 
                         {rows.map((row, idx) => (
                             <Line

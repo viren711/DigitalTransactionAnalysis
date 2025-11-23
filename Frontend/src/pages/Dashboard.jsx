@@ -173,7 +173,8 @@ export default function Dashboard() {
                             <DbInsight options={filterOptions} selected={selectedRange} setSelected={setSelectedRange} />
                         </div> */}
                         <div className="flex justify-end mx-6 mt-5">
-                            <button className="rounded-[5px] bg-[#3fa2ff] text-[#032034]" onClick={() => { navigate('/dataset2') }}>View Dataset 2</button>
+                            <button className="rounded-[5px] bg-[#3fa2ff] text-[#032034] mx-2" onClick={() => { navigate('/dataset2') }}>View Dataset 2</button>
+                            <button className="rounded-[5px] bg-[#3fa2ff] text-[#032034]" onClick={() => { navigate('/dataset3') }}>View Dataset 3</button>
                         </div>
                         <div className="grid grid-cols-2 gap-6 mx-4">
                             <EcosystemBarChart data={rows} top={7} />
