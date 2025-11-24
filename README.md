@@ -48,6 +48,7 @@ Additionally, a robust backend and an interactive frontend have been developed t
 
 
 ## Project Structure
+
 DigitalTransactionAnalysis/
 ├── Backend/
 │   ├── app.py
@@ -86,6 +87,7 @@ DigitalTransactionAnalysis/
 ├── LICENSE
 ├── README.md
 ├── requirements.txt
+
 
 ## API Reference
 
