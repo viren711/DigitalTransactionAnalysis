@@ -12,13 +12,9 @@ import {
 export default function DigitalPaymentsLineChart({ rows }) {
     if (!rows || rows.length === 0) return null;
 
-    // Extract all fields and detect year columns dynamically
     const allKeys = Object.keys(rows[0]);
     const yearColumns = allKeys.filter((k) => k.includes("_")).sort();
 
-    // Transform rows (Mode → Year Series)
-    // Final format example:
-    // { year: "2018_2019", BHIM UPI: 5000, NEFT: 200, IMPS: 300 }
     const chartData = yearColumns.map((year) => {
         const entry = { year };
         rows.forEach((row) => {
@@ -27,7 +23,7 @@ export default function DigitalPaymentsLineChart({ rows }) {
         return entry;
     });
 
-    // Chart color palette
+
     const colors = [
         "#f97316", "#2563eb", "#22c55e", "#eab308",
         "#ec4899", "#8b5cf6", "#14b8a6", "#ef4444",

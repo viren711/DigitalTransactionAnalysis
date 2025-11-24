@@ -1,4 +1,4 @@
-// Sidebar.jsx
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +9,7 @@ export default function Sidebar({
   d3Active = false,
   predActive = false,
   compActive = false,
-  onComparisonResult, 
+  onComparisonResult,
 }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate()
@@ -22,8 +22,6 @@ export default function Sidebar({
       const res = await fetch(`${API_BASE}/api/sample11`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
-        //body: JSON.stringify({ message: "run comparison" }),
-        // credentials: "include" // enable if you use cookie-based sessions
       });
 
       if (!res.ok) {
@@ -59,18 +57,18 @@ export default function Sidebar({
         <div
           className={`${d1Active ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`} onClick={() => navigate("/dataset1")}
         >
-          {}
-          Dataset 1
+          { }
+          Digital Payments
         </div>
         <div
           className={`${d2Active ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`} onClick={() => navigate("/dataset2")}
         >
-          Dataset2
+          Ecosystem DB
         </div>
         <div
           className={`${d3Active ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`} onClick={() => navigate("/dataset3")}
         >
-          Dataset3
+          Bank-Wise UPI
         </div>
         <div
           className={`${predActive ? "bg-[#153246] text-[#d0efff]" : ""} hover:bg-[#153246] hover:text-[#d0efff] border border-[#242f43] rounded-[5px] my-3 px-4 py-4`} onClick={() => navigate("/predictions")}

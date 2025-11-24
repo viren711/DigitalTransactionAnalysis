@@ -10,12 +10,10 @@ import {
 export default function EcosystemPieChart({ data, mainPage = false }) {
     if (!data.length) return null;
 
-    // Top 7 categories by value (because you slice(0, 7))
     const top7 = [...data]
         .sort((a, b) => b.value - a.value)
         .slice(0, 7);
 
-    // Prepare pie chart data (same style as DigitalPaymentsPieChart)
     const pieData = top7.map((item) => ({
         name:
             item.category.length > 30
@@ -25,7 +23,6 @@ export default function EcosystemPieChart({ data, mainPage = false }) {
         value: item.value
     }));
 
-    // EXACT number of colors = 7
     const colors = [
         "#f97316", "#2563eb", "#22c55e",
         "#eab308", "#ec4899", "#8b5cf6",
@@ -48,7 +45,7 @@ export default function EcosystemPieChart({ data, mainPage = false }) {
                             outerRadius={`${mainPage ? 200 : 150}`}
                             startAngle={45}
                             endAngle={405}
-                            label={({ value }) => value.toLocaleString()}     // EXACT match to DigitalPaymentsPieChart
+                            label={({ value }) => value.toLocaleString()}
                         >
                             {pieData.map((_, idx) => (
                                 <Cell key={idx} fill={colors[idx % colors.length]} />

@@ -33,7 +33,7 @@ export default function PredictionsPage() {
         .filter((k) => k.includes("pred"))
         .sort();
 
-    const futureCols = ["2025_2026"]; // ALWAYS one, always last
+    const futureCols = ["2025_2026"];
 
     const columns = ["Mode", ...yearCols, ...predCols, ...futureCols];
 
@@ -62,7 +62,7 @@ export default function PredictionsPage() {
                                 {columns.map((col, idx) => (
                                     <th
                                         key={idx}
-                                        className="px-4 py-2 border-b border-[#273246] whitespace-normal break-words"
+                                        className="px-4 py-2 border-b border-[#273246] whitespace-normal wrap-break-word"
                                     >
                                         {col.replace(/_/g, " ")}
                                     </th>
@@ -76,7 +76,7 @@ export default function PredictionsPage() {
                                     {columns.map((col, cIndex) => (
                                         <td
                                             key={cIndex}
-                                            className="px-4 py-2 border-b border-[#273246] whitespace-normal break-words"
+                                            className="px-4 py-2 border-b border-[#273246] whitespace-normal wrap-break-word"
                                         >
                                             {typeof row[col] === "number"
                                                 ? row[col].toLocaleString(undefined, { maximumFractionDigits: 2 })

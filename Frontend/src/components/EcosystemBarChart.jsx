@@ -11,18 +11,17 @@ import {
 export default function EcosystemBarChart({ data, top }) {
     if (!data || data.length === 0) return null;
 
-    // STEP 1 — sort by value & pick TOP 10
+
     const top10 = [...data]
         .sort((a, b) => b.value - a.value)
         .slice(0, top);
 
-    // FIXED: use top10 instead of top7, and include value
     const barData = top10.map((item) => ({
         name:
             item.category.length > 30
                 ? item.category.substring(0, 30) + "..."
                 : item.category,
-        value: item.value  // <-- REQUIRED for the bar chart
+        value: item.value
     }));
 
     return (

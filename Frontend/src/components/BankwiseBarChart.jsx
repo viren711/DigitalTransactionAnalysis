@@ -12,13 +12,13 @@ import {
 export default function BankWiseBarChart({ rows }) {
     const [selectedYear, setSelectedYear] = useState("2025");
 
-    // get year options dynamically
+
     const years = [...new Set(rows.map(r => r.Year))].sort();
 
-    // months that exist in the dataset
+
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-    // convert dataset → bar data per bank
+
     const chartData = useMemo(() => {
         return rows
             .filter(r => r.Year == selectedYear)
@@ -34,7 +34,7 @@ export default function BankWiseBarChart({ rows }) {
                     total
                 };
             })
-            .sort((a, b) => b.total - a.total); // high → low
+            .sort((a, b) => b.total - a.total);
     }, [selectedYear, rows]);
 
 

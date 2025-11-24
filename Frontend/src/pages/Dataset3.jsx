@@ -25,7 +25,6 @@ export default function Dataset3() {
         ];
 
         return rows.map(row => {
-            // Sum all month values (ignore missing ones)
             const total = monthKeys.reduce((sum, m) => {
                 const val = Number(row[m]) || 0;
                 return sum + val;
@@ -48,13 +47,10 @@ export default function Dataset3() {
         return <div className="text-white text-xl p-6">No data available.</div>;
     }
 
-    // 1. Extract full list of columns
     const allKeys = Object.keys(rows[0]);
 
-    // 2. Remove 'id'
     const cleanedKeys = allKeys.filter(k => k !== "id");
 
-    // 3. Order columns: Bank_Name → Year → Jan → Feb → ... → Dec
     const monthOrder = [
         "Jan", "Feb", "Mar", "Apr", "May", "Jun",
         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"

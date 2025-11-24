@@ -85,7 +85,6 @@ export default function PredictionsLineChart({ rows, selectedMode }) {
                             stroke="#94a3b8"
                             tickFormatter={(v) => `${v} Cr`}
                             width={100}
-                            // angle={-45}
                             label={{
                                 value: "Transactions (Cr)",
                                 angle: -90,

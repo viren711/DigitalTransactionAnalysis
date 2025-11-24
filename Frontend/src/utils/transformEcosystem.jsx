@@ -1,6 +1,6 @@
 export function transformEcosystem(rows) {
     return rows
-        .filter(r => r.Description !== "Total") // remove total row
+        .filter(r => r.Description !== "Total")
         .map(r => ({
             id: r.id,
             category: r.Description,

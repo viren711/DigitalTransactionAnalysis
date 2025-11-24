@@ -12,11 +12,9 @@ import {
 export default function DigitalPaymentsCompareChart({ rows }) {
     if (!rows || rows.length === 0) return null;
 
-    // Extract year columns in sorted order
     const allKeys = Object.keys(rows[0]);
     const yearColumns = allKeys.filter(k => k.includes("_")).sort();
 
-    // Transform rows into chart format
     const chartData = rows.map(row => {
         const obj = { mode: row.Mode };
         yearColumns.forEach(yr => {

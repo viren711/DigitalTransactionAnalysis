@@ -3,7 +3,6 @@ import Sidebar from "../components/Sidebar";
 import StatCard from "../components/StatCard";
 import DbInsight from "../components/DbInsight";
 import DbTable from "../components/DbTable";
-// import DigitalPaymentsChart from "../components/DigitalPaymentsChart";
 import { transformDigitalPayments } from "../utils/transformDigitalPayments";
 import DigitalPaymentsBarChart from "../components/DigitalPaymentsBarChart";
 import DigitalPaymentsPieChart from "../components/DigitalPaymentsPieChart";
@@ -33,7 +32,7 @@ export default function Dashboard() {
                 const { years, data } = transformDigitalPayments(json.rows);
                 setYears(years);
                 setRawData(data);
-                setChartData(data); // initial chart = all years
+                setChartData(data);
             });
     }, []);
 
@@ -67,14 +66,12 @@ export default function Dashboard() {
         const latest = data[data.length - 1];
         const modes = Object.keys(latest).filter((k) => k !== "year");
 
-        // Get top N modes based on latest year's values
         const topModes = modes
             .map((mode) => ({ mode, value: latest[mode] }))
             .sort((a, b) => b.value - a.value)
             .slice(0, topN)
             .map((item) => item.mode);
 
-        // Keep only top N modes in every year
         const reduced = data.map((entry) => {
             const obj = { year: entry.year };
             topModes.forEach((mode) => {
@@ -91,7 +88,6 @@ export default function Dashboard() {
         let filtered = filterData(selectedRange);
         let pieD = getTopModes(filtered, topN);
         setPieData(pieD)
-        // setTopN(5)
         let reduced = getTopModes(filtered, topN);
         setChartData(reduced);
     }, [selectedRange, rawData, topN]);

@@ -48,15 +48,12 @@ export default function Dataset1() {
                     <div className="overflow-auto border border-[#273246] rounded-lg">
 
                         {(() => {
-                            // Get all keys
                             const allKeys = Object.keys(rows[0]);
 
-                            // Extract year columns and sort them
                             const yearCols = allKeys
-                                .filter((k) => k.includes("_")) // years like 2018_2019
-                                .sort(); // chronological order
+                                .filter((k) => k.includes("_"))
+                                .sort();
 
-                            // Final correct order of columns
                             const columns = ["id", "Mode", ...yearCols];
 
                             return (

@@ -9,7 +9,6 @@ export function transformDigitalPayments(rows) {
         rows.forEach((row) => {
             const raw = row[year];
 
-            // Round to 2 decimals BEFORE everything else
             const value = typeof raw === "number" ? Number(raw.toFixed(2)) : 0;
 
             entry[row.Mode] = value;

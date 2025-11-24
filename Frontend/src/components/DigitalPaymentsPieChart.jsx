@@ -10,7 +10,6 @@ import {
 export default function DigitalPaymentsPieChart({ data }) {
     if (!data.length) return null;
 
-    // ALWAYS use the final year from the filtered data
     const latest = data[data.length - 1];
 
     const modes = Object.keys(latest).filter((key) => key !== "year");

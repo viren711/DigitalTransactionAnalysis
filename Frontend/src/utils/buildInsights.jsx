@@ -1,11 +1,9 @@
 export function buildInsights(rows) {
-    // Detect years dynamically
     const yearKeys = Object.keys(rows[0]).filter(k => k.includes("_"));
 
     const latestYear = yearKeys[yearKeys.length - 1];
     const prevYear = yearKeys[yearKeys.length - 2];
 
-    // Compute change and current values
     const enriched = rows.map((row) => {
         const current = Number(row[latestYear]);
         const prev = Number(row[prevYear]);
@@ -18,15 +16,13 @@ export function buildInsights(rows) {
         };
     });
 
-    // Sort & pick top 5
     const top5 = enriched.sort((a, b) => b.current - a.current).slice(0, 5);
 
-    // Convert to insight card format
     const insights = top5.map((item) => ({
-        date: new Date().toISOString().split("T")[0], // today
+        date: new Date().toISOString().split("T")[0],
         source: "Digital Payments API",
         metric: `${item.mode}`,
-        value: item.current.toLocaleString(), // formatted
+        value: item.current.toLocaleString(),
         change: (item.change > 0 ? "+" : "") + item.change.toFixed(2) + "%"
     }));
 

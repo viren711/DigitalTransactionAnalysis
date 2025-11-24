@@ -16,28 +16,27 @@ export default function BankwiseLineChart({ rows }) {
 
     const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-    // Extract unique years
+
     const years = [...new Set(rows.map((r) => r.Year))].sort();
 
     useEffect(() => {
         if (!selectedYear && years.length > 0) {
-            setSelectedYear(years[0]); // default = first year
+            setSelectedYear(years[0]);
         }
     }, [years]);
 
     useEffect(() => {
         if (!selectedYear) return;
 
-        // Filter banks for selected year only
+
         const yearRows = rows.filter((r) => r.Year === selectedYear);
 
-        // Restructure into month-wise rows for the chart
         const formatted = MONTHS.map((month) => {
             const entry = { month };
 
             yearRows.forEach((bankRow) => {
                 const rawValue = bankRow[month] || 0;
-                const crValue = Number(rawValue / 1_00_00_000).toFixed(2); // convert to Crores
+                const crValue = Number(rawValue / 1_00_00_000).toFixed(2);
                 entry[bankRow.Bank_Name] = Number(crValue);
             });
 

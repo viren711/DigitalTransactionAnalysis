@@ -1,27 +1,3 @@
-// import Sidebar from "../components/Sidebar";
-
-// export default function Dataset2() {
-//     return (<>
-// <Sidebar d2Active />
-// <div className="pl-[20vw] bg-[#0e1724] flex w-screen">
-//     <div className="w-px h-full bg-[#242f43]"></div>
-
-//     <div className="flex-1">
-//         <div className="px-5 py-4">
-//             <div className="text-[35px] font-bold">
-//                 Digital Transaction Analysis
-//             </div>
-//             <div className="text-[18px] text-[#9db6cb]">
-//                 Tracking RBI, NPCI, and market trends
-//             </div>
-//         </div>
-//         <div className="h-px w-full bg-[#242f43]"></div>
-
-//     </div>
-// </div>
-//     </>);
-// }
-
 import { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import EcosystemBarChart from "../components/EcosystemBarChart";
@@ -49,10 +25,8 @@ export default function Dataset2() {
         return <div className="text-white p-6 text-xl">No data available.</div>;
     }
 
-    // Format data for charts
     const cleanedRows = rows.filter((r) => r.Description !== "Total");
 
-    // Format for charts
     const chartData = cleanedRows.map((r) => ({
         category: r.Description,
         value: Number(String(r.Value__in_Cr__).replace(/,/g, "")),
